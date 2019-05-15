@@ -45,6 +45,8 @@ public class dse_tlsv12 {
             // NOTE: ERROR with java.lang.IllegalArgumentException: TLS
             //       has to be TLSv1, TLSv1.1, TLSv1.2
             //builder.protocols("TLS");
+            // NOTE: can be multiples. But "TLSv1.2" only works fine.
+            //builder.protocols("TLSv1", "TLSv1.1", "TLSv1.2");
             builder.protocols("TLSv1.2");
 
             HashSet<String> cipherSets = new HashSet<String>();
