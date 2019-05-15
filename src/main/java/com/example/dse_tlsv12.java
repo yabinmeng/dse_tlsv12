@@ -28,7 +28,7 @@ public class dse_tlsv12 {
         InputStream is = null;
 
         try {
-            is = FileUtils.openInputStream(new File("/Users/yabinmeng/Desktop/MyFolder/Yabin.Work/Datastax/Misc_Codes/dse_tlsv12/src/main/resources/mytruststore"));
+            is = FileUtils.openInputStream(new File("<client_truststore_file_abs_path>"));
             char[] pwd = "cassandra".toCharArray();
 
             KeyStore ks = KeyStore.getInstance("JKS");
@@ -66,7 +66,7 @@ public class dse_tlsv12 {
         InputStream is = null;
 
         try {
-            is = FileUtils.openInputStream(new File("/Users/yabinmeng/Desktop/MyFolder/Yabin.Work/Datastax/Misc_Codes/dse_tlsv12/src/main/resources/mytruststore"));
+            is = FileUtils.openInputStream(new File("<client_truststore_file_abs_path>"));
             char[] pwd = "cassandra".toCharArray();
 
             KeyStore ks = KeyStore.getInstance("JKS");
@@ -101,8 +101,8 @@ public class dse_tlsv12 {
         try {
             DseCluster.Builder dseclusterBuilder =
                 DseCluster.builder()
-                    .addContactPoints("35.153.105.125")     // explicit TLS v1.2
-                    //.addContactPoints("18.234.38.48")       // default TLS
+                    .addContactPoints("<DSE_Node_IP_with_explicit_TLSv1.2_cipher_suites>")      // explicit TLS v1.2
+                    //.addContactPoints("<DSE_Node_IP_with_default_cipher_suites>")             // default TLS
                     .withLoadBalancingPolicy(
                         new TokenAwarePolicy(
                             DCAwareRoundRobinPolicy.builder()
