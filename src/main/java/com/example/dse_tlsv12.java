@@ -46,8 +46,8 @@ public class dse_tlsv12 {
             //       has to be TLSv1, TLSv1.1, TLSv1.2
             //builder.protocols("TLS");
             // NOTE: can be multiples. But,
-            //       1) "TLSv1.2" only works fine with both DSE nodes
-            //       2) "TLSv1" and "TLSv1.1" does NOT work with TLSv1.2 specific DSE node
+            //       1) "TLSv1.2" by itself works fine with both DSE nodes
+            //       2) "TLSv1" and "TLSv1.1" do NOT work with TLSv1.2 specific DSE node
             //builder.protocols("TLSv1", "TLSv1.1", "TLSv1.2");
             builder.protocols("TLSv1.2");
 
@@ -113,7 +113,10 @@ public class dse_tlsv12 {
                                 .withLocalDc("DC1")
                                 .build()));
 
+            // TEST for using Netty SSL
             dseclusterBuilder = dseclusterBuilder.withSSL(getRemoteNettySSLOptions());
+            
+            // TEST for using JSSE SSL
             //dseclusterBuilder = dseclusterBuilder.withSSL(getRemoteJDKSSLOptions());
 
             dsecluster = dseclusterBuilder.build();
