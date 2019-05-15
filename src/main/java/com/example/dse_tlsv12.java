@@ -42,14 +42,15 @@ public class dse_tlsv12 {
             TrustManager[] tm = tmf.getTrustManagers();
 
             SslContextBuilder builder = SslContextBuilder.forClient().trustManager(tmf);
-            //builder.protocols("TLSv1", "TLSv1.1", "TLSv1.2");
+            // NOTE: ERROR with java.lang.IllegalArgumentException: TLS
+            //       has to be TLSv1, TLSv1.1, TLSv1.2
+            //builder.protocols("TLS");
             builder.protocols("TLSv1.2");
 
             HashSet<String> cipherSets = new HashSet<String>();
             cipherSets.add("TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384");
             builder.ciphers(cipherSets);
-            //builder.protocols("TLS");   // java.lang.IllegalArgumentException: TLS
-
+            
             sslOptions = new RemoteEndpointAwareNettySSLOptions(builder.build());
 
         } catch (Exception e) {
